@@ -1,1 +1,11 @@
-<p>anime-detail works!</p>
+<div *ngIf="anime">
+    <h1>{{ anime.title }}</h1>
+    <p>{{ anime.synopsis }}</p>
+    <p>Rating: {{ anime.score }}</p>
+    <img [src]="anime.images.jpg.large_image_url" alt="{{ anime.title }}" />
+</div>
+  
+<div *ngIf="episodesResponse">
+    <h2>Episodios</h2>
+    <app-episode-list [episodes]="episodesResponse.data" [animeId]="anime?.mal_id || 0"></app-episode-list>
+</div>

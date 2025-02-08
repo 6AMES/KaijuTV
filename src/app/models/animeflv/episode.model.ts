@@ -1,7 +1,7 @@
+import { AnimeFLVServer } from './server.model';
+
 export interface AnimeFLVEpisode {
-    id: string;
-    slug: string;
-    number: number;
-    url: string;
-    title: string;
+  title: string;
+  number: number;
+  servers: AnimeFLVServer[];
 }

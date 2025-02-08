@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AnimeFLVAnime } from '../models/animeflv/anime.model';
 import { AnimeFLVEpisode } from '../models/animeflv/episode.model';
+import { AnimeFLVApiResponse } from '../models/animeflv/api-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +21,10 @@ export class AnimeFLVService {
       .pipe(catchError(this.handleError));
   }
 
-  // Obtener un episodio por su slug
-  getEpisodeBySlug(slug: string): Observable<AnimeFLVEpisode> {
+  // Obtener episodios de un anime por su slug
+  getEpisodeBySlug(slug: string): Observable<AnimeFLVApiResponse> {
     return this.http
-      .get<AnimeFLVEpisode>(`${this.apiUrl}/anime/episode/${slug}`)
+      .get<AnimeFLVApiResponse>(`${this.apiUrl}/anime/episode/${slug}`)
       .pipe(catchError(this.handleError));
   }
 

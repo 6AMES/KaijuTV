@@ -4,14 +4,22 @@ export interface JikanAnime {
     title_english: string;
     title_japanese: string;
     synopsis: string;
-    trailer_url: string;
-    episodes: number;
-    score: number;
+    background: string;
     images: {
         jpg: {
             image_url: string;
             small_image_url: string;
             large_image_url: string;
         };
+    };
+    score: number;
+    episodes: number;
+    status: string;
+    rating: string;
+    genres: { name: string }[];
+    trailer: {
+        youtube_id: string;
+        url: string;
+        embed_url: string;
     };
 }
