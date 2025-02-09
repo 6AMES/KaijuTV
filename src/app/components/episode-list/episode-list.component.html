@@ -1,7 +1,7 @@
 <ul>
     <li *ngFor="let episode of episodes">
-        <h3>{{ episode.title }} (Episodio {{ episode.episode }})</h3>
-        <p>Fecha de emisión: {{ episode.aired }}</p>
+        <h3>{{ episode.title }} (Episodio {{ episode.mal_id }})</h3>
+        <p>Fecha de emisión: {{ episode.aired | date: 'dd/MM/yyyy' }}</p>
         <a [routerLink]="['/anime', animeId, 'episode', episode.mal_id]">Ver detalles</a>
     </li>
 </ul>

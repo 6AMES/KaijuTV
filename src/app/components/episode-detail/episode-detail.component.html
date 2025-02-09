@@ -6,3 +6,9 @@
     <p *ngIf="episode.filler">Este episodio es de relleno.</p>
     <p *ngIf="episode.recap">Este episodio es un resumen.</p>
 </div>
+
+<div>
+    <h2>Reproducir episodio</h2>
+    <!-- Mostrar el reproductor de video -->
+    <app-video-player [videoUrl]="videoUrl"></app-video-player>
+</div>

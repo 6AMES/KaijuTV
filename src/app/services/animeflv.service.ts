@@ -1,73 +1,34 @@
-// services/animeflv.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
-import { AnimeFLVAnime } from '../models/animeflv/anime.model';
-import { AnimeFLVEpisode } from '../models/animeflv/episode.model';
-import { AnimeFLVApiResponse } from '../models/animeflv/api-response.model';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { AnimeFLVEpisodeResponse } from '../models/animeflv/episode.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AnimeFLVService {
-  private apiUrl = 'https://animeflv.ahmedrangel.com/api/v1';
+  private apiUrl = 'https://animeflv.ahmedrangel.com/api';
+  private slugs: string[] = [];
 
   constructor(private http: HttpClient) {}
 
-  // Obtener un anime por su slug
-  getAnimeBySlug(slug: string): Observable<AnimeFLVAnime> {
+  // Obtener detalles de un episodio específico
+  getEpisode(slug: string, number: number): Observable<AnimeFLVEpisodeResponse> {
     return this.http
-      .get<AnimeFLVAnime>(`${this.apiUrl}/anime/${slug}`)
+      .get<AnimeFLVEpisodeResponse>(`${this.apiUrl}/anime/${slug}/episode/${number}`)
       .pipe(catchError(this.handleError));
   }
 
-  // Obtener episodios de un anime por su slug
-  getEpisodeBySlug(slug: string): Observable<AnimeFLVApiResponse> {
-    return this.http
-      .get<AnimeFLVApiResponse>(`${this.apiUrl}/anime/episode/${slug}`)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Obtener un episodio por su slug y número
-  getEpisodeBySlugAndNumber(slug: string, number: number): Observable<AnimeFLVEpisode> {
-    return this.http
-      .get<AnimeFLVEpisode>(`${this.apiUrl}/anime/${slug}/episode/${number}`)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Buscar animes por consulta
-  searchAnime(query: string): Observable<AnimeFLVAnime[]> {
-    return this.http
-      .get<AnimeFLVAnime[]>(`${this.apiUrl}/search?query=${query}`)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Buscar animes por filtros (POST)
-  searchAnimeByFilters(filters: any): Observable<AnimeFLVAnime[]> {
-    return this.http
-      .post<AnimeFLVAnime[]>(`${this.apiUrl}/search/by-filter`, filters)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Buscar animes por URL
-  searchAnimeByUrl(url: string): Observable<AnimeFLVAnime> {
-    return this.http
-      .get<AnimeFLVAnime>(`${this.apiUrl}/search/by-url?url=${url}`)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Obtener una lista de los últimos episodios lanzados
-  getLatestEpisodes(): Observable<AnimeFLVEpisode[]> {
-    return this.http
-      .get<AnimeFLVEpisode[]>(`${this.apiUrl}/list/latest-episodes`)
-      .pipe(catchError(this.handleError));
-  }
-
-  // Obtener una lista de animes en emisión
-  getAnimesOnAir(): Observable<AnimeFLVAnime[]> {
-    return this.http
-      .get<AnimeFLVAnime[]>(`${this.apiUrl}/list/animes-on-air`)
-      .pipe(catchError(this.handleError));
+  // Cargar la lista de slugs desde animes.txt
+  loadSlugs(): Observable<string[]> {
+    return this.http.get('assets/animes.txt', { responseType: 'text' }).pipe(
+      catchError(this.handleError),
+      map((data) => {
+        // Convertir el contenido del archivo en un array de slugs
+        this.slugs = JSON.parse(data);
+        return this.slugs;
+      })
+    );
   }
 
   // Manejo de errores
