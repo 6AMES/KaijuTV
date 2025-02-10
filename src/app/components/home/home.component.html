@@ -2,7 +2,14 @@
 <ul>
   <li *ngFor="let anime of popularAnimes">
     <a [routerLink]="['/anime', anime.mal_id]">
-      {{ anime.title }} ({{ anime.title_english }})
+      <img src="" alt="">
+      <img [src]="anime.images.jpg.image_url" alt="">
+      {{ anime.title }}
+      {{ anime.episodes }}
+      {{ getGenres(anime) }}
+      {{ anime.rating }}
+      {{ anime.score }}
+      {{ anime.status }}
     </a>
   </li>
 </ul>

@@ -1,13 +1,20 @@
-<div *ngIf="videoUrl">
-    <iframe
-      [src]="videoUrl | safeUrl"
-      width="100%"
-      height="500"
-      frameborder="0"
-      allowfullscreen
-    ></iframe>
+<h2>Selecciona un servidor:</h2>
+<div>
+    <button 
+        *ngFor="let server of servers" 
+        (click)="selectServer(server)"
+        [class.selected]="server.embed === selectedVideoUrl">
+        {{ server.name }}
+    </button>
 </div>
-  
-<div *ngIf="!videoUrl">
-    <p>No se ha proporcionado una URL de video.</p>
+
+<!-- Reproductor de video -->
+<div *ngIf="selectedVideoUrl">
+    <iframe 
+        [src]="selectedVideoUrl | safeUrl" 
+        width="100%" 
+        height="500" 
+        frameborder="0" 
+        allowfullscreen>
+    </iframe>
 </div>

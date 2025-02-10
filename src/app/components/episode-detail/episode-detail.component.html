@@ -10,5 +10,5 @@
 <div>
     <h2>Reproducir episodio</h2>
     <!-- Mostrar el reproductor de video -->
-    <app-video-player [videoUrl]="videoUrl"></app-video-player>
+    <app-video-player [servers]="animeFLVEpisode?.data?.servers ?? []" [selectedVideoUrl]="videoUrl"></app-video-player>
 </div>

@@ -20,4 +20,8 @@ export class HomeComponent {
       this.popularAnimes = Response.data;
     });
   }
+
+  getGenres(anime: JikanAnime): string {
+    return anime.genres.map(genre => genre.name).join(', ');
+  }
 }
