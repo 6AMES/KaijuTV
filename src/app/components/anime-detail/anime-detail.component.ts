@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JikanService } from '../../services/jikan.service';
 import { JikanAnime } from '../../models/jikan/anime.model';
-import { JikanEpisodeResponse } from '../../models/jikan/episode.model';
+import { JikanEpisode, JikanEpisodeResponse } from '../../models/jikan/episode.model';
 import { CommonModule } from '@angular/common';
 import { EpisodeListComponent } from "../episode-list/episode-list.component";
 
@@ -16,6 +16,7 @@ import { EpisodeListComponent } from "../episode-list/episode-list.component";
 export class AnimeDetailComponent implements OnInit {
   anime: JikanAnime | null = null; // Información del anime
   episodesResponse: JikanEpisodeResponse | null = null; // Respuesta de episodios con paginación
+  episodes: JikanEpisode[] = [];
 
   constructor(
     private route: ActivatedRoute, // Para obtener el parámetro de la ruta
@@ -35,6 +36,7 @@ export class AnimeDetailComponent implements OnInit {
         this.jikanService.getAnimeEpisodes(+animeId).subscribe(
           (response) => {
             this.episodesResponse = response; // Asignar la respuesta de episodios
+            this.episodes = response.data;
           },
           (error) => {
             console.error('Error al obtener los episodios:', error); // Manejar errores

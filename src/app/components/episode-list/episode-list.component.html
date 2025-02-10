@@ -2,6 +2,7 @@
     <li *ngFor="let episode of episodes">
         <h3>{{ episode.title }} (Episodio {{ episode.mal_id }})</h3>
         <p>Fecha de emisión: {{ episode.aired | date: 'dd/MM/yyyy' }}</p>
+        <img [src]="" alt="" width="100">
         <a [routerLink]="['/anime', animeId, 'episode', episode.mal_id]">Ver detalles</a>
     </li>
 </ul>

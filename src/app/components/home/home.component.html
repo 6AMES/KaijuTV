@@ -60,3 +60,24 @@
     </ul>
   </div>
 </section>
+
+<section>
+  <div class="title-cont">
+    <h1>Animes de {{ seasonName }} {{ year }}</h1>
+  </div>
+  <div class="anime-cont">
+    <ul>
+      <li *ngFor="let anime of currentSeason">
+        <a [routerLink]="['/anime', anime.mal_id]">
+          <img [src]="anime.images.jpg.image_url" alt="">
+          {{ anime.title }}
+          {{ anime.episodes }}
+          {{ getGenres(anime) }}
+          {{ anime.rating }}
+          {{ anime.score }}
+          {{ anime.status }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

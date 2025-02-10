@@ -5,6 +5,8 @@ export interface JikanAnime {
     title_japanese: string;
     synopsis: string;
     background: string;
+    season: string;
+    year: number;
     images: {
         jpg: {
             image_url: string;

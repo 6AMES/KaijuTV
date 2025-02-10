@@ -39,7 +39,7 @@
 
 body {
     margin: 0;
-    background-color: #23252B;
+    background-color: #000000;
     color: #FFFFFF;
     font-family: Lato;
 }
@@ -51,4 +51,9 @@ ul {
 
 li {
     list-style: none;
+}
+
+a {
+    color: #FFFFFF;
+    text-decoration: none;
 }

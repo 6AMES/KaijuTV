@@ -14,7 +14,9 @@ export class HomeComponent {
   popularAnimes: JikanAnime[] = [];
   seasonsNow: JikanAnime[] = [];
   seasonsUpcoming: JikanAnime[] = [];
-
+  currentSeason: JikanAnime[] = [];
+  seasonName: string = '';
+  year: number = new Date().getFullYear();
 
   constructor(private jikanService: JikanService) {}
 
@@ -23,13 +25,23 @@ export class HomeComponent {
       this.popularAnimes = Response.data;
     });
 
-    this.jikanService.getSeasonsNow().subscribe((Response) => {
+    this.jikanService.getSeasonNow().subscribe((Response) => {
       this.seasonsNow = Response.data;
     });
     
-    this.jikanService.getSeasonsUpcoming().subscribe((Response) => {
+    this.jikanService.getSeasonUpcoming().subscribe((Response) => {
       this.seasonsUpcoming = Response.data;
     });
+
+    this.jikanService.getCurrentSeason().subscribe({
+    next: (response) => { 
+      this.currentSeason = response.data;
+
+      // Obtener la traducción de la temporada
+      const { seasonName } = this.jikanService.getRealSeason();
+      this.seasonName = seasonName;
+    },
+  });
   }
 
   getGenres(anime: JikanAnime): string {
