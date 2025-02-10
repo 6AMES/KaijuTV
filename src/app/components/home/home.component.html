@@ -1,15 +1,62 @@
-<h1>Animes Populares</h1>
-<ul>
-  <li *ngFor="let anime of popularAnimes">
-    <a [routerLink]="['/anime', anime.mal_id]">
-      <img src="" alt="">
-      <img [src]="anime.images.jpg.image_url" alt="">
-      {{ anime.title }}
-      {{ anime.episodes }}
-      {{ getGenres(anime) }}
-      {{ anime.rating }}
-      {{ anime.score }}
-      {{ anime.status }}
-    </a>
-  </li>
-</ul>
+<section>
+  <div class="title-cont">
+    <h1>Animes Populares</h1>
+  </div>
+  <div class="anime-cont">
+    <ul>
+      <li *ngFor="let anime of popularAnimes">
+        <a [routerLink]="['/anime', anime.mal_id]">
+          <img [src]="anime.images.jpg.image_url" alt="">
+          {{ anime.title }}
+          {{ anime.episodes }}
+          {{ getGenres(anime) }}
+          {{ anime.rating }}
+          {{ anime.score }}
+          {{ anime.status }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="title-cont">
+    <h1>Animes de esta Temporada</h1>
+  </div>
+  <div class="anime-cont">
+    <ul>
+      <li *ngFor="let anime of seasonsNow">
+        <a [routerLink]="['/anime', anime.mal_id]">
+          <img [src]="anime.images.jpg.image_url" alt="">
+          {{ anime.title }}
+          {{ anime.episodes }}
+          {{ getGenres(anime) }}
+          {{ anime.rating }}
+          {{ anime.score }}
+          {{ anime.status }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="title-cont">
+    <h1>Animes de la Próxima Temporada</h1>
+  </div>
+  <div class="anime-cont">
+    <ul>
+      <li *ngFor="let anime of seasonsUpcoming">
+        <a [routerLink]="['/anime', anime.mal_id]">
+          <img [src]="anime.images.jpg.image_url" alt="">
+          {{ anime.title }}
+          {{ anime.episodes }}
+          {{ getGenres(anime) }}
+          {{ anime.rating }}
+          {{ anime.score }}
+          {{ anime.status }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -12,12 +12,23 @@ import { JikanService } from '../../services/jikan.service';
 })
 export class HomeComponent {
   popularAnimes: JikanAnime[] = [];
+  seasonsNow: JikanAnime[] = [];
+  seasonsUpcoming: JikanAnime[] = [];
+
 
   constructor(private jikanService: JikanService) {}
 
   ngOnInit(): void {
     this.jikanService.getTopAnime().subscribe((Response) => {
       this.popularAnimes = Response.data;
+    });
+
+    this.jikanService.getSeasonsNow().subscribe((Response) => {
+      this.seasonsNow = Response.data;
+    });
+    
+    this.jikanService.getSeasonsUpcoming().subscribe((Response) => {
+      this.seasonsUpcoming = Response.data;
     });
   }
 

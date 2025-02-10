@@ -1,0 +1,30 @@
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-cont {
+    padding: 0 1rem;
+}
+
+h1 {
+    font-size: 1.75rem;
+}
+
+ul {
+    display: flex;
+    overflow-x: scroll;
+}
+
+ul::-webkit-scrollbar {
+    display: none;
+}
+
+li {
+    margin: 0 1rem;
+}
+
+img {
+    height: 325px;
+    width: 225px;
+}

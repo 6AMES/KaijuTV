@@ -20,6 +20,20 @@ export class JikanService {
       .pipe(catchError(this.handleError));
   }
 
+  // Obtener los animes de la temporada actual
+  getSeasonsNow(): Observable<{ data: JikanAnime[] }> {
+    return this.http
+      .get<{ data: JikanAnime[] }>(`${this.apiUrl}/seasons/now`)
+      .pipe(catchError(this.handleError));
+  }
+
+  // Obtener los animes de la siguiente temporada
+  getSeasonsUpcoming(): Observable<{ data: JikanAnime[] }> {
+    return this.http
+      .get<{ data: JikanAnime[] }>(`${this.apiUrl}/seasons/upcoming`)
+      .pipe(catchError(this.handleError));
+  }
+
   // Obtener detalles completos de un anime por su ID
   getAnimeFullById(id: number): Observable<{ data: JikanAnime }> {
     return this.http
