@@ -17,8 +17,6 @@ export class JikanService {
   getTopAnime(): Observable<{ data: JikanAnime[] }> {
     const url = `${this.apiUrl}/top/anime`;
 
-    console.log("Llamando a la API con URL:", url);
-
     return this.http.get<{ data: JikanAnime[] }>(url).pipe(
       retryWhen((errors) =>
         errors.pipe(
@@ -36,8 +34,6 @@ export class JikanService {
   // Obtener los animes de la temporada actual
   getSeasonNow(): Observable<{ data: JikanAnime[] }> {
     const url = `${this.apiUrl}/seasons/now`;
-
-    console.log("Llamando a la API con URL:", url);
 
     return this.http.get<{ data: JikanAnime[] }>(url).pipe(
       retryWhen((errors) =>
@@ -57,8 +53,6 @@ export class JikanService {
   getSeasonUpcoming(): Observable<{ data: JikanAnime[] }> {
     const url = `${this.apiUrl}/seasons/upcoming`;
 
-    console.log("Llamando a la API con URL:", url);
-
     return this.http.get<{ data: JikanAnime[] }>(url).pipe(
       retryWhen((errors) =>
         errors.pipe(
@@ -73,14 +67,11 @@ export class JikanService {
     );
   }
 
-  // Obtener los animes por temporada específica
-  getCurrentSeason(): Observable<any> {
-    const { year, season } = this.getRealSeason();
+  // Obtener animes por la temporada elegida
+  getSeasonAnime(year: number, season: string): Observable<any> {
     const url = `${this.apiUrl}/seasons/${year}/${season}`;
 
-    console.log("Llamando a la API con URL:", url);
-
-    return this.http.get<any>(url).pipe(
+    return this.http.get<{ data: JikanAnime[] }>(url).pipe(
       retryWhen((errors) =>
         errors.pipe(
           mergeMap((error) => {
@@ -90,34 +81,8 @@ export class JikanService {
             return throwError(() => error);
           })
         )
-      )
+      ),
     );
-  }
-
-
-  public getRealSeason(): { year: number; season: string; seasonName: string } {
-    const now = new Date();
-    const month = now.getMonth() + 1; // Mes actual (1-12)
-    const year = now.getFullYear();
-    let season = '';
-    let seasonName = '';
-
-    // Ajustar la estación según el mes (Hemisferio Norte)
-    if (month >= 12 || month <= 2) {
-      season = 'winter';
-      seasonName = 'invierno';
-    } else if (month >= 3 && month <= 5) {
-      season = 'spring';
-      seasonName = 'primavera';
-    } else if (month >= 6 && month <= 8) {
-      season = 'summer';
-      seasonName = 'verano';
-    } else {
-      season = 'fall';
-      seasonName = 'otoño';
-    }
-
-    return { year, season, seasonName };
   }
 
   // Obtener detalles completos de un anime por su ID

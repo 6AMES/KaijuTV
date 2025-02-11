@@ -1,14 +1,60 @@
 section {
     display: flex;
     flex-direction: column;
+    margin-top: 2rem;
 }
 
 .title-cont {
     padding: 0 1rem;
+    display: flex;
+    gap: 3px;
+}
+
+#seasonalAnime .title-cont {
+    padding: 0;
+}
+
+.title-filter-cont {
+    padding: 0 1rem 1rem 1rem;
 }
 
 h1 {
     font-size: 1.75rem;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    margin-top: .5rem;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+#year {
+    width: 80px;
+    margin-left: 1rem; 
+}
+
+#season {
+    width: fit-content;
+}
+
+option {
+    background-color: #000000;
+    border: none;
+}
+
+#year, #season {
+    height: 34px;
+    border: none;
+    padding: 0;
+    text-align: right;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: transparent;
 }
 
 ul {
@@ -24,7 +70,138 @@ li {
     margin: 0 1rem;
 }
 
-img {
+.anime-cont img {
     height: 325px;
     width: 225px;
+}
+
+#seasonalAnime > .title-filter-cont {
+    display: flex;
+    justify-content: space-between;
+}
+
+#seasonalAnime > .title-filter-cont > .title-cont {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------------------------------
+    SEASONAL ANIME
+------------------------------ */
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    height: 440px;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    will-change: transform;
+    transition: all;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+}
+
+.cards.expanded {
+    height: auto;
+}
+
+.show-more-btn {
+    display: block;
+    margin: 1rem auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.show-more-btn:hover {
+    background-color: #0056b3;
+}
+
+.anime-card {
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 16px;
+    height: 200px;
+    min-width: 300px;
+}
+
+.anime-card_cover {
+    height: 200px;
+    width: 140px;
+    overflow: hidden;
+    position: relative;
+    border-radius: .5rem;
+}
+
+.anime-card_cover img {
+    height: 200px;
+    width: 140px;
+}
+
+.anime-card_overlay {
+    display: flex;
+    width: 100%;
+    padding: 24px 8px 12px 12px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: absolute;
+    bottom: -1px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
+}
+
+.anime-card_rating {
+    display: flex;
+    
+}
+
+.anime-card_body {
+    display: flex;
+    width: 180px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.anime-card_body p {
+    margin: .5rem 0;
+    max-width: 180px;
+    font-size: 16px;
+}
+
+.anime-card_body span, 
+.anime-card_body small {
+    font-size: 12px;
+}
+
+.anime-score_value,
+.anime-rank_value {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.anime-rating {
+    display: flex;
+    gap: 16px;
+}
+
+.anime-genres {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.no-anime {
+    display: none;
 }

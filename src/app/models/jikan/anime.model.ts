@@ -15,6 +15,8 @@ export interface JikanAnime {
         };
     };
     score: number;
+    scored_by: number;
+    rank: number;
     episodes: number;
     status: string;
     rating: string;
