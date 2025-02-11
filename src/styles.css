@@ -57,3 +57,26 @@ a {
     color: #FFFFFF;
     text-decoration: none;
 }
+
+/* ------------------------------
+    STATUS
+------------------------------ */
+
+.status-airing {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-not-aired {
+    color: #ffc107;
+    font-weight: bold;
+}
+  
+.status-finished {
+    color: #dc3545;
+    font-weight: bold;
+}
+  
+.status-default {
+    color: #6c757d;
+}

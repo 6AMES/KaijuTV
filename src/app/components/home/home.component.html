@@ -1,275 +1,341 @@
-<section class="anime-sections">
-  <div class="title-cont">
-    <h1>Animes Populares</h1>
-  </div>
-  <div class="anime-cont">
-    <ul>
-      <li *ngFor="let anime of popularAnimes">
-        <a [routerLink]="['/anime', anime.mal_id]" class="anime-card">
-          <div class="anime-card_cover">
-            <img [src]="anime.images.jpg.image_url" [alt]="anime.title">
-          </div>
-
-          <div class="anime-card_overlay">
-            <div>
-              <h3>{{ anime.title }}</h3>
-              <div class="anime-meta">
-                <span class="anime-score">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                    </path>
-                  </svg>
-                  {{ anime.score }} ({{ anime.scored_by }} personas)
-                </span>
-                <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
-                <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
-                <span *ngIf="anime.episodes == null">Desconocido</span>
-                <span>{{ getAnimeStatus(anime.status) }}</span>
-              </div>
-              <p class="anime-description">
-                "{{ anime.synopsis | slice:0:200 }}..."
-              </p>
-            </div>
-
-            <div class="anime-icons">
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 3l14 9l-14 9l0 -18"></path>
-                </svg>
-              </button>
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 19l12 -12"></path>
-                  <path d="M6 7l12 12"></path>
-                </svg>
-              </button>
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 5l0 14"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="anime-sections">
-  <div class="title-cont">
-    <h1>Animes de esta Temporada</h1>
-  </div>
-  <div class="anime-cont">
-    <ul>
-      <li *ngFor="let anime of seasonsNow">
-        <a [routerLink]="['/anime', anime.mal_id]" class="anime-card">
-          <div class="anime-card_cover">
-            <img [src]="anime.images.jpg.image_url" [alt]="anime.title">
-          </div>
-
-          <div class="anime-card_overlay">
-            <div>
-              <h3>{{ anime.title }}</h3>
-              <div class="anime-meta">
-                <span class="anime-score">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                    </path>
-                  </svg>
-                  {{ anime.score }} ({{ anime.scored_by }} personas)
-                </span>
-                <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
-                <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
-                <span *ngIf="anime.episodes == null">Desconocido</span>
-                <span>{{ getAnimeStatus(anime.status) }}</span>
-              </div>
-              <p class="anime-description">
-                "{{ anime.synopsis | slice:0:150 }}..."
-              </p>
-            </div>
-
-            <div class="anime-icons">
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 3l14 9l-14 9l0 -18"></path>
-                </svg>
-              </button>
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 19l12 -12"></path>
-                  <path d="M6 7l12 12"></path>
-                </svg>
-              </button>
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 5l0 14"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="anime-sections">
-  <div class="title-cont">
-    <h1>Animes de la Próxima Temporada</h1>
-  </div>
-  <div class="anime-cont">
-    <ul>
-      <li *ngFor="let anime of seasonsUpcoming">
-        <a [routerLink]="['/anime', anime.mal_id]" class="anime-card">
-          <div class="anime-card_cover">
-            <img [src]="anime.images.jpg.image_url" [alt]="anime.title">
-          </div>
-
-          <div class="anime-card_overlay">
-            <div>
-              <h3>{{ anime.title }}</h3>
-              <div class="anime-meta">
-                <span class="anime-score">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                    </path>
-                  </svg>
-                  {{ anime.score }} ({{ anime.scored_by }} personas)
-                </span>
-                <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
-                <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
-                <span *ngIf="anime.episodes == null">Desconocido</span>
-                <span>{{ getAnimeStatus(anime.status) }}</span>
-              </div>
-              <p class="anime-description">
-                "{{ anime.synopsis | slice:0:150 }}..."
-              </p>
-            </div>
-
-            <div class="anime-icons">
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 3l14 9l-14 9l0 -18"></path>
-                </svg>
-              </button>
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 19l12 -12"></path>
-                  <path d="M6 7l12 12"></path>
-                </svg>
-              </button>
-              <button class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 5l0 14"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section id="seasonalAnime">
-  <div class="title-filter-cont">
+<main>
+  <section class="anime-sections">
     <div class="title-cont">
-      <h1>Muestra de la temporada {{ getSeasonInSpanish(selectedSeason) }} {{ selectedYear }}</h1>
-      <p>¡Disfruta gratis de los episodios de estos animes de <span class="lowercase">{{
-          getSeasonInSpanish(selectedSeason) }}</span> de <span>{{ selectedYear }}</span>!</p>
+      <h1>Animes de esta Temporada</h1>
     </div>
-
-    <div class="filter-cont">
-      <select id="season" [(ngModel)]="selectedSeason" (change)="fetchSeasonalAnime()">
-        <option value="winter">Invierno</option>
-        <option value="spring">Primavera</option>
-        <option value="summer">Verano</option>
-        <option value="fall">Otoño</option>
-      </select>
-      <input id="year" type="number" [(ngModel)]="selectedYear" (keydown)="preventManualEdit($event)"
-        (input)="validateYear()" [min]="1917" [max]="currentYear" />
+    <div class="anime-scroll-container">
+      <div class="scroll-button left">
+        <button *ngIf="showLeftButtonSeasonNow" class="scroll-but left" (click)="scrollList(-1, 'seasonNow')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6l6-6"></path>
+          </svg>
+        </button>
+      </div>
+  
+      <div class="anime-cont">
+        <ul #seasonNowAnimeList (scroll)="checkScroll('seasonNow')">
+          <li *ngFor="let anime of seasonsNow">
+            <a [routerLink]="['/anime', anime.mal_id]" class="anime-card" (mousemove)="handleMouseMove($event, anime.mal_id)" (mouseleave)="resetTransform(anime.mal_id)"
+            [ngStyle]="animeTransforms[anime.mal_id]">
+              <div class="anime-card_cover">
+                <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title">
+              </div>
+              <div class="anime-card_overlay">
+                <div>
+                  <h3>{{ anime.title.length > 40 ? (anime.title | slice:0:40) + '...' : anime.title }}</h3>
+                  <div class="anime-meta">
+                    <span class="anime-score">
+                      {{ anime.score }} ({{ anime.scored_by }} personas)
+                    </span>
+                    <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
+                    <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
+                    <span *ngIf="anime.episodes == null">Desconocido</span>
+                    <span [ngClass]="getAnimeStatusClass(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
+                  </div>
+                  <p class="anime-description">
+                    "{{ anime.synopsis | slice:0:150 }}..."
+                  </p>
+                </div>
+                <div class="anime-icons">
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 3l14 9l-14 9l0 -18"></path>
+                    </svg>
+                  </button>
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 19l12 -12"></path>
+                      <path d="M6 7l12 12"></path>
+                    </svg>
+                  </button>
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 5l0 14"></path>
+                      <path d="M5 12l14 0"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="scroll-button right">
+        <button *ngIf="showRightButtonSeasonNow" class="scroll-but right" (click)="scrollList(1, 'seasonNow')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6l-6-6"></path>
+          </svg>
+        </button>
+      </div>
     </div>
-  </div>
-
-  <div class="cards" [class.expanded]="showAll">
-    <a *ngFor="let anime of currentSeason" [routerLink]="['/anime', anime.mal_id]" class="anime-card"
-      (mousemove)="handleMouseMove($event, anime.mal_id)" (mouseleave)="resetTransform(anime.mal_id)"
-      [ngStyle]="animeTransforms[anime.mal_id]">
-      <div class="anime-card_cover">
-        <img [src]="anime.images.jpg.image_url" [title]="anime.title" class="anime-card_image">
-        <div class="anime-card_overlay">
-          <div class="anime-card_rating">
-            <small>{{ getSimpleRating(anime.rating) }}</small>
-          </div>
-        </div>
-      </div>
-      <div class="anime-card_body">
-        <div class="anime-status">
-          <span>{{ getAnimeStatus(anime.status) }}</span>
-        </div>
-        <div class="anime-meta">
-          <small *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</small>
-          <small *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</small>
-          <small *ngIf="anime.episodes == null">Desconocido</small>
-        </div>
-        <p class="anime-title">{{ anime.title.length > 40 ? (anime.title | slice:0:40) + '...' : anime.title }}</p>
-        <div class="anime-rating">
-          <div class="anime-score">
-            <div class="anime-score_value">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                class="icon-star">
-                <path
-                  d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                </path>
-              </svg> {{ anime.score }}
-            </div>
-            <small>{{ anime.scored_by }} personas</small>
-          </div>
-          <div class="anime-rank">
-            <div class="anime-rank_value">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                class="icon-hash">
-                <path d="M5 9l14 0"></path>
-                <path d="M5 15l14 0"></path>
-                <path d="M11 4l-4 16"></path>
-                <path d="M17 4l-4 16"></path>
-              </svg>
-              {{ anime.rank }}
-            </div>
-            <small>Ranking</small>
-          </div>
-        </div>
-        <div class="anime-genres">
-          <div *ngFor="let genre of anime.genres | slice:0:3" class="genre-chip">
-            <span>{{ genre.name }}</span>
-          </div>
-        </div>
-      </div>
+  </section>
+  
+  <section class="banner">
+    <a [routerLink]="['/anime/58514']">
+      <img src="../../../assets/images/ApothecaryDiaries-Banner.avif" alt="">
     </a>
-  </div>
+  </section>
+  
+  <section class="anime-sections">
+    <div class="title-cont">
+      <h1>Animes Populares</h1>
+    </div>
+    <div class="anime-scroll-container">
+      <div class="scroll-button left">
+        <button *ngIf="showLeftButtonPopular" class="scroll-but left" (click)="scrollList(-1, 'popular')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6l6-6"></path>
+          </svg>
+        </button>
+      </div>
+  
+      <div class="anime-cont">
+        <ul #popularAnimeList (scroll)="checkScroll('popular')">
+          <li *ngFor="let anime of popularAnimes">
+            <a [routerLink]="['/anime', anime.mal_id]" class="anime-card" (mousemove)="handleMouseMove($event, anime.mal_id)" (mouseleave)="resetTransform(anime.mal_id)"
+            [ngStyle]="animeTransforms[anime.mal_id]">
+              <div class="anime-card_cover">
+                <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title">
+              </div>
+              <div class="anime-card_overlay">
+                <div>
+                  <h3>{{ anime.title.length > 40 ? (anime.title | slice:0:40) + '...' : anime.title }}</h3>
+                  <div class="anime-meta">
+                    <span class="anime-score">
+                      {{ anime.score }} ({{ anime.scored_by }} personas)
+                    </span>
+                    <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
+                    <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
+                    <span *ngIf="anime.episodes == null">Desconocido</span>
+                    <span [ngClass]="getAnimeStatusClass(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
+                  </div>
+                  <p class="anime-description">
+                    "{{ anime.synopsis | slice:0:150 }}..."
+                  </p>
+                </div>
+                <div class="anime-icons">
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 3l14 9l-14 9l0 -18"></path>
+                    </svg>
+                  </button>
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 19l12 -12"></path>
+                      <path d="M6 7l12 12"></path>
+                    </svg>
+                  </button>
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 5l0 14"></path>
+                      <path d="M5 12l14 0"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="scroll-button right">
+        <button *ngIf="showRightButtonPopular" class="scroll-but right" (click)="scrollList(1, 'popular')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6l-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <section id="seasonalAnime">
+    <div class="title-filter-cont">
+      <div class="title-cont">
+        <div class="h1-filt-cont">
+          <h1>Muestra de la temporada</h1>
+          <div class="filter-cont">
+            <div class="custom-dropdown">
+              <div class="dropdown-selected" (click)="toggleSeasonDropdown()">
+                {{ getSeasonInSpanish(selectedSeason) }}
+              </div>
+              <div class="dropdown-options" *ngIf="isSeasonDropdownOpen">
+                <div class="dropdown-option" *ngFor="let season of seasons" 
+                    (click)="selectSeason(season.value)">
+                  {{ season.label }}
+                </div>
+              </div>
+            </div>
+            <div class="custom-dropdown year">
+              <div class="dropdown-selected year" (click)="toggleYearDropdown()">
+                {{ selectedYear }}
+              </div>
+              <div *ngIf="isYearDropdownOpen" class="dropdown-list">
+                <div *ngFor="let year of availableYears" (click)="selectYear(year)" class="dropdown-item">
+                  {{ year }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>¡Haz click en la estación y el año y disfruta de los animes de cada temporada!</p>
+      </div>
+    </div>
+  
+    <div class="cards" [class.expanded]="showAll">
+      <a *ngFor="let anime of currentSeason" [routerLink]="['/anime', anime.mal_id]" class="anime-card"
+        (mousemove)="handleMouseMove($event, anime.mal_id)" (mouseleave)="resetTransform(anime.mal_id)"
+        [ngStyle]="animeTransforms[anime.mal_id]">
+        <div class="anime-card_cover">
+          <img [src]="anime.images.jpg.large_image_url" [title]="anime.title" class="anime-card_image">
+          <div class="anime-card_overlay">
+            <div class="anime-card_rating">
+              <small>{{ getSimpleRating(anime.rating) }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="anime-card_body">
+          <div class="anime-status">
+            <span [ngClass]="getAnimeStatusClass(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
+          </div>
+          <div class="anime-meta">
+            <small *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</small>
+            <small *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</small>
+            <small *ngIf="anime.episodes == null">Desconocido</small>
+          </div>
+          <p class="anime-title">{{ anime.title.length > 40 ? (anime.title | slice:0:40) + '...' : anime.title }}</p>
+          <div class="anime-rating">
+            <div class="anime-score">
+              <div class="anime-score_value">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon-star">
+                  <path
+                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                  </path>
+                </svg> {{ anime.score }}
+              </div>
+              <small>{{ anime.scored_by }} personas</small>
+            </div>
+            <div class="anime-rank">
+              <div class="anime-rank_value">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon-hash">
+                  <path d="M5 9l14 0"></path>
+                  <path d="M5 15l14 0"></path>
+                  <path d="M11 4l-4 16"></path>
+                  <path d="M17 4l-4 16"></path>
+                </svg>
+                {{ anime.rank }}
+              </div>
+              <small>Ranking</small>
+            </div>
+          </div>
+          <div class="anime-genres">
+            <div *ngFor="let genre of anime.genres | slice:0:3" class="genre-chip">
+              <span>{{ genre.name }}</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  
+    <button class="show-more-btn" (click)="toggleShowAll()">
+      {{ showAll ? 'Mostrar menos' : 'Mostrar todo' }}
+    </button>
+  </section>
+  
+  <section class="anime-sections">
+    <div class="title-cont">
+      <h1>Animes de la Próxima Temporada</h1>
+    </div>
+    <div class="anime-scroll-container">
+      <div class="scroll-button left">
+        <button *ngIf="showLeftButtonUpcoming" class="scroll-but left" (click)="scrollList(-1, 'upcoming')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6l6-6"></path>
+          </svg>
+        </button>
+      </div>
+  
+      <div class="anime-cont">
+        <ul #upcomingAnimeList (scroll)="checkScroll('upcoming')">
+          <li *ngFor="let anime of seasonsUpcoming">
+            <a [routerLink]="['/anime', anime.mal_id]" class="anime-card" (mousemove)="handleMouseMove($event, anime.mal_id)" (mouseleave)="resetTransform(anime.mal_id)"
+            [ngStyle]="animeTransforms[anime.mal_id]">
+              <div class="anime-card_cover">
+                <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title">
+              </div>
+              <div class="anime-card_overlay">
+                <div>
+                  <h3>{{ anime.title.length > 40 ? (anime.title | slice:0:40) + '...' : anime.title }}</h3>
+                  <div class="anime-meta">
+                    <span class="anime-score">
+                      {{ anime.score }} ({{ anime.scored_by }} personas)
+                    </span>
+                    <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
+                    <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
+                    <span *ngIf="anime.episodes == null">Desconocido</span>
+                    <span [ngClass]="getAnimeStatusClass(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
+                  </div>
+                  <p class="anime-description">
+                    "{{ anime.synopsis | slice:0:150 }}..."
+                  </p>
+                </div>
+                <div class="anime-icons">
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 3l14 9l-14 9l0 -18"></path>
+                    </svg>
+                  </button>
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 19l12 -12"></path>
+                      <path d="M6 7l12 12"></path>
+                    </svg>
+                  </button>
+                  <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 5l0 14"></path>
+                      <path d="M5 12l14 0"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="scroll-button right">
+        <button *ngIf="showRightButtonUpcoming" class="scroll-but right" (click)="scrollList(1, 'upcoming')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6l-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
 
-  <button class="show-more-btn" (click)="toggleShowAll()">
-    {{ showAll ? 'Mostrar menos' : 'Mostrar todo' }}
-  </button>
-</section>
+  <section class="banner">
+    <a [routerLink]="['/anime/56894']">
+      <img src="../../../assets/images/DragonBallDaima-Banner.avif" alt="">
+    </a>
+  </section>
+</main>
