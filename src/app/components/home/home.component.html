@@ -1,60 +1,189 @@
-<section>
+<section class="anime-sections">
   <div class="title-cont">
     <h1>Animes Populares</h1>
   </div>
   <div class="anime-cont">
     <ul>
       <li *ngFor="let anime of popularAnimes">
-        <a [routerLink]="['/anime', anime.mal_id]">
-          <img [src]="anime.images.jpg.image_url" alt="">
-          {{ anime.title }}
-          {{ anime.episodes }}
-          {{ getGenres(anime) }}
-          {{ anime.rating }}
-          {{ anime.score }}
-          {{ anime.status }}
+        <a [routerLink]="['/anime', anime.mal_id]" class="anime-card">
+          <div class="anime-card_cover">
+            <img [src]="anime.images.jpg.image_url" [alt]="anime.title">
+          </div>
+
+          <div class="anime-card_overlay">
+            <div>
+              <h3>{{ anime.title }}</h3>
+              <div class="anime-meta">
+                <span class="anime-score">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                    </path>
+                  </svg>
+                  {{ anime.score }} ({{ anime.scored_by }} personas)
+                </span>
+                <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
+                <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
+                <span *ngIf="anime.episodes == null">Desconocido</span>
+                <span>{{ getAnimeStatus(anime.status) }}</span>
+              </div>
+              <p class="anime-description">
+                "{{ anime.synopsis | slice:0:200 }}..."
+              </p>
+            </div>
+
+            <div class="anime-icons">
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 3l14 9l-14 9l0 -18"></path>
+                </svg>
+              </button>
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 19l12 -12"></path>
+                  <path d="M6 7l12 12"></path>
+                </svg>
+              </button>
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5l0 14"></path>
+                  <path d="M5 12l14 0"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
         </a>
       </li>
     </ul>
   </div>
 </section>
 
-<section>
+<section class="anime-sections">
   <div class="title-cont">
     <h1>Animes de esta Temporada</h1>
   </div>
   <div class="anime-cont">
     <ul>
       <li *ngFor="let anime of seasonsNow">
-        <a [routerLink]="['/anime', anime.mal_id]">
-          <img [src]="anime.images.jpg.image_url" alt="">
-          {{ anime.title }}
-          {{ anime.episodes }}
-          {{ getGenres(anime) }}
-          {{ anime.rating }}
-          {{ anime.score }}
-          {{ anime.status }}
+        <a [routerLink]="['/anime', anime.mal_id]" class="anime-card">
+          <div class="anime-card_cover">
+            <img [src]="anime.images.jpg.image_url" [alt]="anime.title">
+          </div>
+
+          <div class="anime-card_overlay">
+            <div>
+              <h3>{{ anime.title }}</h3>
+              <div class="anime-meta">
+                <span class="anime-score">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                    </path>
+                  </svg>
+                  {{ anime.score }} ({{ anime.scored_by }} personas)
+                </span>
+                <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
+                <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
+                <span *ngIf="anime.episodes == null">Desconocido</span>
+                <span>{{ getAnimeStatus(anime.status) }}</span>
+              </div>
+              <p class="anime-description">
+                "{{ anime.synopsis | slice:0:150 }}..."
+              </p>
+            </div>
+
+            <div class="anime-icons">
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 3l14 9l-14 9l0 -18"></path>
+                </svg>
+              </button>
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 19l12 -12"></path>
+                  <path d="M6 7l12 12"></path>
+                </svg>
+              </button>
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5l0 14"></path>
+                  <path d="M5 12l14 0"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
         </a>
       </li>
     </ul>
   </div>
 </section>
 
-<section>
+<section class="anime-sections">
   <div class="title-cont">
     <h1>Animes de la Próxima Temporada</h1>
   </div>
   <div class="anime-cont">
     <ul>
       <li *ngFor="let anime of seasonsUpcoming">
-        <a [routerLink]="['/anime', anime.mal_id]">
-          <img [src]="anime.images.jpg.image_url" alt="">
-          {{ anime.title }}
-          {{ anime.episodes }}
-          {{ getGenres(anime) }}
-          {{ anime.rating }}
-          {{ anime.score }}
-          {{ anime.status }}
+        <a [routerLink]="['/anime', anime.mal_id]" class="anime-card">
+          <div class="anime-card_cover">
+            <img [src]="anime.images.jpg.image_url" [alt]="anime.title">
+          </div>
+
+          <div class="anime-card_overlay">
+            <div>
+              <h3>{{ anime.title }}</h3>
+              <div class="anime-meta">
+                <span class="anime-score">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                    </path>
+                  </svg>
+                  {{ anime.score }} ({{ anime.scored_by }} personas)
+                </span>
+                <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
+                <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
+                <span *ngIf="anime.episodes == null">Desconocido</span>
+                <span>{{ getAnimeStatus(anime.status) }}</span>
+              </div>
+              <p class="anime-description">
+                "{{ anime.synopsis | slice:0:150 }}..."
+              </p>
+            </div>
+
+            <div class="anime-icons">
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 3l14 9l-14 9l0 -18"></path>
+                </svg>
+              </button>
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 19l12 -12"></path>
+                  <path d="M6 7l12 12"></path>
+                </svg>
+              </button>
+              <button class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5l0 14"></path>
+                  <path d="M5 12l14 0"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
         </a>
       </li>
     </ul>
@@ -76,7 +205,8 @@
         <option value="summer">Verano</option>
         <option value="fall">Otoño</option>
       </select>
-      <input id="year" type="number" [(ngModel)]="selectedYear" (input)="fetchSeasonalAnime()" />
+      <input id="year" type="number" [(ngModel)]="selectedYear" (keydown)="preventManualEdit($event)"
+        (input)="validateYear()" [min]="1917" [max]="currentYear" />
     </div>
   </div>
 
@@ -94,16 +224,18 @@
       </div>
       <div class="anime-card_body">
         <div class="anime-status">
-          <span>{{ anime.status }}</span>
+          <span>{{ getAnimeStatus(anime.status) }}</span>
         </div>
         <div class="anime-meta">
-          <small>{{ anime.episodes }} episodios</small>
+          <small *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</small>
+          <small *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</small>
+          <small *ngIf="anime.episodes == null">Desconocido</small>
         </div>
         <p class="anime-title">{{ anime.title.length > 40 ? (anime.title | slice:0:40) + '...' : anime.title }}</p>
         <div class="anime-rating">
           <div class="anime-score">
             <div class="anime-score_value">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                 class="icon-star">
                 <path
@@ -115,7 +247,7 @@
           </div>
           <div class="anime-rank">
             <div class="anime-rank_value">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                 class="icon-hash">
                 <path d="M5 9l14 0"></path>

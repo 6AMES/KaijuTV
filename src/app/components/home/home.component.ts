@@ -16,6 +16,7 @@ export class HomeComponent {
   seasonsNow: JikanAnime[] = [];
   seasonsUpcoming: JikanAnime[] = [];
   currentSeason: JikanAnime[] = [];
+  currentYear: number = new Date().getFullYear();
   selectedSeason: string = '';
   selectedYear: number = new Date().getFullYear();
   showAll: boolean = false;
@@ -80,6 +81,16 @@ export class HomeComponent {
     return ratingSimple[rating] || rating;
   }
 
+  getAnimeStatus(status: string): string {
+    const animeStatus: { [key: string]: string } = {
+      "Currently Airing": 'En emisión',
+      "Not yet aired": 'No emitido',
+      "Finished Airing": 'Terminado',
+    };
+  
+    return animeStatus[status] || status;
+  }
+
   getGenres(anime: JikanAnime): string {
     return anime.genres.map(genre => genre.name).join(', ');
   }
@@ -92,14 +103,14 @@ export class HomeComponent {
     const card = event.currentTarget as HTMLElement;
     const rect = card.getBoundingClientRect();
 
-    const x = event.clientX - rect.left; // Posición del mouse dentro de la card
+    const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -10; // Rotación en X (invertida)
-    const rotateY = ((x - centerX) / centerX) * 10; // Rotación en Y
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
 
     this.animeTransforms[animeId] = {
       transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`,
@@ -112,5 +123,18 @@ export class HomeComponent {
       transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
       transition: 'transform 0.3s ease-out',
     };
+  }
+
+  validateYear() {
+    if (this.selectedYear < 1917) {
+      this.selectedYear = 1917;
+    } else if (this.selectedYear > this.currentYear) {
+      this.selectedYear = this.currentYear;
+    }
+    this.fetchSeasonalAnime();
+  }
+
+  preventManualEdit(event: KeyboardEvent) {
+    event.preventDefault();
   }
 }
