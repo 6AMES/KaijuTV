@@ -88,21 +88,35 @@ export class HomeComponent {
     this.showAllEnd = !this.showAllEnd;
   }
 
-  loadFeaturedAnime(): void {
-    this.jikanService.getAnimeFullById(30).subscribe((response) => {
-      this.featuredAnime1 = response.data;
-      console.log(this.featuredAnime1);
+  loadFeaturedAnime(retryCount: number = 3): void {
+    this.jikanService.getAnimeFullById(30).subscribe({
+      next: (response) => {
+        this.featuredAnime1 = response.data;
+      },
+      error: (err) => {
+        console.error("Error al cargar featuredAnime1", err);
+        if (retryCount > 0) {
+          setTimeout(() => this.loadFeaturedAnime(retryCount - 1), 1000);
+        }
+      }
     });
-
-    this.jikanService.getAnimeFullById(38000).subscribe((response2) => {
-      this.featuredAnime2 = response2.data;
-
-      if (this.featuredAnime2.trailer?.embed_url) {
-        this.videoUrl2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.featuredAnime2.trailer.embed_url);
+  
+    this.jikanService.getAnimeFullById(38000).subscribe({
+      next: (response2) => {
+        this.featuredAnime2 = response2.data;
+        if (this.featuredAnime2.trailer?.embed_url) {
+          this.videoUrl2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.featuredAnime2.trailer.embed_url);
+        }
+      },
+      error: (err) => {
+        console.error("Error al cargar featuredAnime2", err);
+        if (retryCount > 0) {
+          setTimeout(() => this.loadFeaturedAnime(retryCount - 1), 1000);
+        }
       }
     });
   }
-
+  
   scrollList(direction: number, listType: string): void {
     const scrollAmount = 1325; // Cantidad de píxeles a desplazar
     let list: HTMLElement;
@@ -121,10 +135,8 @@ export class HomeComponent {
         return;
     }
 
-    // Desplazar horizontalmente
     list.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 
-    // Actualizar visibilidad de los botones
     this.checkScroll(listType);
   }
 
@@ -276,16 +288,6 @@ export class HomeComponent {
     this.selectedYear = year;
     this.isYearDropdownOpen = false;
     this.fetchSeasonalAnime();
-  }
-
-  getAnimeStatusClass(status: string): string {
-    const statusColors: { [key: string]: string } = {
-      "Currently Airing": 'status-airing',
-      "Not yet aired": 'status-not-aired',
-      "Finished Airing": 'status-finished',
-    };
-  
-    return statusColors[status] || 'status-default';
   }
 
   @HostListener('document:click', ['$event'])

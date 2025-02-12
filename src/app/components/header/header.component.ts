@@ -9,13 +9,11 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  // Estados para controlar los desplegables
   isTypeDropdownOpen = false;
   isStatusDropdownOpen = false;
   isRatingDropdownOpen = false;
   isGenresDropdownOpen = false;
 
-  // Opciones para cada filtro
   types = [
     { value: 'tv', label: 'TV' },
     { value: 'movie', label: 'Película' },
@@ -49,7 +47,6 @@ export class HeaderComponent {
 
   constructor(private router: Router) {}
 
-  // Métodos para alternar los desplegables
   toggleDropdown(dropdown: string): void {
     let isOpen = false;
 
@@ -91,13 +88,11 @@ export class HeaderComponent {
     }
   }
 
-  // Método para manejar la selección de una opción
   selectFilter(filter: string, value: string): void {
     this.closeAllDropdowns(); // Cierra todos los desplegables
     this.router.navigate(['/search'], { queryParams: { [filter]: value } });
   }
 
-  // Cierra todos los desplegables
   private closeAllDropdowns(): void {
     this.isTypeDropdownOpen = false;
     this.isStatusDropdownOpen = false;
@@ -105,7 +100,6 @@ export class HeaderComponent {
     this.isGenresDropdownOpen = false;
   }
 
-  // Detecta clics fuera del desplegable
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent): void {
     const target = event.target as HTMLElement;

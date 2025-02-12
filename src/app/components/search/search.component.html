@@ -1,18 +1,71 @@
 <main>
-    <div class="search-container">
-        <div *ngIf="loading" class="loading-indicator">
-            <p>Cargando resultados...</p>
-        </div>
-      
-        <div class="results-grid" *ngIf="!loading && searchResults.length > 0">
-            <div class="anime-card" *ngFor="let anime of searchResults">
-                <img [src]="anime.images.jpg.image_url" alt="{{ anime.title }}" />
-                <h3>{{ anime.title }}</h3>
-                <p>{{ anime.synopsis | slice: 0:100 }}...</p>
-                <p><strong>Tipo:</strong> {{ anime.type }}</p>
-                <p><strong>Estado:</strong> {{ anime.status }}</p>
-                <p><strong>Rating:</strong> {{ anime.rating || 'N/A' }}</p>
+    <section id="seasonalAnime">
+        <div class="title-filter-cont">
+            <div class="title-cont">
+                <h1>{{ pageTitle }}</h1>
             </div>
         </div>
-    </div>
+
+        <div class="cards">
+            <a *ngFor="let anime of searchResults" [routerLink]="['/anime', anime.mal_id]" class="anime-card"
+                (mousemove)="handleMouseMove($event, anime.mal_id)" (mouseleave)="resetTransform(anime.mal_id)"
+                [ngStyle]="animeTransforms[anime.mal_id]">
+                <div class="anime-card_cover">
+                    <img [src]="anime.images.jpg.large_image_url" [title]="anime.title" class="anime-card_image">
+                    <div class="anime-card_overlay">
+                        <div class="anime-card_rating">
+                            <small>{{ getSimpleRating(anime.rating) }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card_body">
+                    <div class="anime-status">
+                        <span [ngClass]="getAnimeStatus(anime.status)">{{ getAnimeStatus(anime.status)
+                            }}</span>
+                    </div>
+                    <div class="anime-meta">
+                        <small *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</small>
+                        <small *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</small>
+                        <small *ngIf="anime.episodes == null">Desconocido</small>
+                    </div>
+                    <p class="anime-title">{{ anime.title.length > 40 ? (anime.title | slice:0:40) + '...' :
+                        anime.title }}</p>
+                    <div class="anime-rating">
+                        <div class="anime-score">
+                            <div class="anime-score_value">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" class="icon-star">
+                                    <path
+                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                                    </path>
+                                </svg> {{ anime.score }}
+                            </div>
+                            <small>{{ anime.scored_by }} personas</small>
+                        </div>
+                        <div class="anime-rank">
+                            <div class="anime-rank_value">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" class="icon-hash">
+                                    <path d="M5 9l14 0"></path>
+                                    <path d="M5 15l14 0"></path>
+                                    <path d="M11 4l-4 16"></path>
+                                    <path d="M17 4l-4 16"></path>
+                                </svg>
+                                {{ anime.rank }}
+                            </div>
+                            <small>Ranking</small>
+                        </div>
+                    </div>
+                    <div class="anime-genres">
+                        <div *ngFor="let genre of anime.genres | slice:0:3" class="genre-chip">
+                            <span>{{ genre.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <button *ngIf="!loading" class="show-more-btn" (click)="loadMoreAnimes()">Mostrar más</button>
+    </section>
 </main>

@@ -12,42 +12,40 @@
                     Tipo
                 </div>
                 <div class="dropdown-options" *ngIf="isTypeDropdownOpen">
-                    <div class="dropdown-option" *ngFor="let type of types" (click)="selectFilter('type', type.value)">
+                    <div class="dropdown-option" *ngFor="let type of types" (click)="selectFilter('type', type.value); $event.stopPropagation()">
                         {{ type.label }}
                     </div>
                 </div>
             </div>
-    
+
             <div class="custom-dropdown" (click)="toggleDropdown('status')">
                 <div class="dropdown-selected">
                     Estado
                 </div>
                 <div class="dropdown-options" *ngIf="isStatusDropdownOpen">
-                    <div class="dropdown-option" *ngFor="let status of statuses"
-                        (click)="selectFilter('status', status.value)">
+                    <div class="dropdown-option" *ngFor="let status of statuses" (click)="selectFilter('status', status.value); $event.stopPropagation()">
                         {{ status.label }}
                     </div>
                 </div>
             </div>
-    
+
             <div class="custom-dropdown" (click)="toggleDropdown('rating')">
                 <div class="dropdown-selected">
                     Clasificación
                 </div>
                 <div class="dropdown-options" *ngIf="isRatingDropdownOpen">
-                    <div class="dropdown-option" *ngFor="let rating of ratings"
-                        (click)="selectFilter('rating', rating.value)">
+                    <div class="dropdown-option" *ngFor="let rating of ratings" (click)="selectFilter('rating', rating.value); $event.stopPropagation()">
                         {{ rating.label }}
                     </div>
                 </div>
             </div>
-    
+
             <div class="custom-dropdown" (click)="toggleDropdown('genres')">
                 <div class="dropdown-selected">
                     Géneros
                 </div>
                 <div class="dropdown-options" *ngIf="isGenresDropdownOpen">
-                    <div class="dropdown-option" *ngFor="let genre of genres" (click)="selectFilter('genres', genre.value)">
+                    <div class="dropdown-option" *ngFor="let genre of genres" (click)="selectFilter('genres', genre.value); $event.stopPropagation()">
                         {{ genre.label }}
                     </div>
                 </div>

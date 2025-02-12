@@ -35,7 +35,7 @@
                     <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
                     <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
                     <span *ngIf="anime.episodes == null">Desconocido</span>
-                    <span [ngClass]="getAnimeStatusClass(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
+                    <span [ngClass]="getAnimeStatus(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
                   </div>
                   <p class="anime-description">
                     "{{ anime.synopsis | slice:0:150 }}..."
@@ -111,7 +111,7 @@
                     <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
                     <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
                     <span *ngIf="anime.episodes == null">Desconocido</span>
-                    <span [ngClass]="getAnimeStatusClass(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
+                    <span [ngClass]="getAnimeStatus(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
                   </div>
                   <p class="anime-description">
                     "{{ anime.synopsis | slice:0:150 }}..."
@@ -196,7 +196,7 @@
         </div>
         <div class="anime-card_body">
           <div class="anime-status">
-            <span [ngClass]="getAnimeStatusClass(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
+            <span [ngClass]="getAnimeStatus(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
           </div>
           <div class="anime-meta">
             <small *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</small>
@@ -326,7 +326,7 @@
                     <span *ngIf="anime.episodes > 1">{{ anime.episodes }} episodios</span>
                     <span *ngIf="anime.episodes == 1">{{ anime.episodes }} episodio</span>
                     <span *ngIf="anime.episodes == null">Desconocido</span>
-                    <span [ngClass]="getAnimeStatusClass(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
+                    <span [ngClass]="getAnimeStatus(anime.status)">{{ getAnimeStatus(anime.status) }}</span>
                   </div>
                   <p class="anime-description">
                     "{{ anime.synopsis | slice:0:150 }}..."
