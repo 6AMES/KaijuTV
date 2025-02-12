@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { JikanAnime } from '../../models/jikan/anime.model';
 import { JikanService } from '../../services/jikan.service';
 import { FormsModule } from '@angular/forms';
@@ -52,7 +52,9 @@ export class HomeComponent {
   videoUrl1: SafeResourceUrl;
   videoUrl2: SafeResourceUrl | null = null;
 
-  constructor(private jikanService: JikanService, private elementRef: ElementRef, private sanitizer: DomSanitizer) {
+  showAllEnd: boolean = false;
+
+  constructor(private jikanService: JikanService, private elementRef: ElementRef, private sanitizer: DomSanitizer, private router: Router) {
     this.videoUrl1 = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/2o_9GjAs-sc?si=1fvSohZ-JzjkIWb4');
   }
 
@@ -76,6 +78,14 @@ export class HomeComponent {
     this.generateAvailableYears();
 
     this.loadFeaturedAnime();
+  }
+
+  navigateToSearch(): void {
+    this.router.navigate(['/search/anime']);
+  }
+
+  toggleShowAllEnd() {
+    this.showAllEnd = !this.showAllEnd;
   }
 
   loadFeaturedAnime(): void {

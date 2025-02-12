@@ -9,5 +9,6 @@ export const routes: Routes = [
     { path: 'anime/:id', component: AnimeDetailComponent },
     { path: 'anime/:animeId/episode/:episodeNumber', component: EpisodeDetailComponent },
     { path: 'search', component: SearchComponent },
+    { path: 'search/:id', component: SearchComponent },
     { path: '**', redirectTo: '' },
 ];

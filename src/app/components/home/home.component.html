@@ -183,7 +183,7 @@
     </div>
   
     <div class="cards" [class.expanded]="showAll">
-      <a *ngFor="let anime of currentSeason | slice:0:15" [routerLink]="['/anime', anime.mal_id]" class="anime-card"
+      <a *ngFor="let anime of currentSeason" [routerLink]="['/anime', anime.mal_id]" class="anime-card"
         (mousemove)="handleMouseMove($event, anime.mal_id)" (mouseleave)="resetTransform(anime.mal_id)"
         [ngStyle]="animeTransforms[anime.mal_id]">
         <div class="anime-card_cover">
@@ -368,8 +368,8 @@
     <div class="end-cont">
       <img src="../../../assets/images/crunchy-pet.png" alt="">
       <p>¿Sigues buscando algo que ver?<br>Revisa todo nuestro catálogo</p>
-      <button class="show-all-btn" [routerLink]="">
-        {{ showAll ? 'Mostrar menos' : 'Mostrar todo' }}
+      <button class="show-all-btn" (click)="navigateToSearch()">
+        {{ 'Mostrar todo' }}
       </button>
     </div>
   </section>

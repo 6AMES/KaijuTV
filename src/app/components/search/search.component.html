@@ -1,16 +1,9 @@
 <main>
     <div class="search-container">
-        <!-- Indicador de carga -->
         <div *ngIf="loading" class="loading-indicator">
             <p>Cargando resultados...</p>
         </div>
       
-        <!-- Mensaje si no hay resultados -->
-        <div *ngIf="!loading && searchResults.length === 0" class="no-results">
-            <p>No se encontraron resultados.</p>
-        </div>
-      
-        <!-- Lista de resultados -->
         <div class="results-grid" *ngIf="!loading && searchResults.length > 0">
             <div class="anime-card" *ngFor="let anime of searchResults">
                 <img [src]="anime.images.jpg.image_url" alt="{{ anime.title }}" />
