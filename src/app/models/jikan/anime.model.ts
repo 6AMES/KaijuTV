@@ -21,6 +21,7 @@ export interface JikanAnime {
     status: string;
     rating: string;
     genres: { name: string }[];
+    type?: string;
     trailer: {
         youtube_id: string;
         url: string;

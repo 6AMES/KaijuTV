@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { JikanAnime } from '../../models/jikan/anime.model';
 import { JikanService } from '../../services/jikan.service';
 import { FormsModule } from '@angular/forms';
-import { style } from '@angular/animations';
+import { HeroSliderComponent } from "../hero-slider/hero-slider.component";
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, HeroSliderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -34,6 +35,10 @@ export class HomeComponent {
     { value: 'fall', label: 'Otoño' }
   ];
   availableYears: number[] = [];
+  
+  featuredAnime1: JikanAnime | null = null;
+  featuredAnime2: JikanAnime | null = null;
+  featuredAnime3: JikanAnime | null = null;
 
   showLeftButtonSeasonNow: boolean = false;
   showRightButtonSeasonNow: boolean = true;
@@ -44,7 +49,12 @@ export class HomeComponent {
   showLeftButtonUpcoming: boolean = false;
   showRightButtonUpcoming: boolean = true;
 
-  constructor(private jikanService: JikanService, private elementRef: ElementRef) {}
+  videoUrl1: SafeResourceUrl;
+  videoUrl2: SafeResourceUrl | null = null;
+
+  constructor(private jikanService: JikanService, private elementRef: ElementRef, private sanitizer: DomSanitizer) {
+    this.videoUrl1 = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/2o_9GjAs-sc?si=1fvSohZ-JzjkIWb4');
+  }
 
   ngOnInit(): void {
     this.jikanService.getTopAnime().subscribe((Response) => {
@@ -60,8 +70,27 @@ export class HomeComponent {
     });
 
     this.selectedSeason = this.getCurrentSeason();
+
     this.fetchSeasonalAnime();
+
     this.generateAvailableYears();
+
+    this.loadFeaturedAnime();
+  }
+
+  loadFeaturedAnime(): void {
+    this.jikanService.getAnimeFullById(30).subscribe((response) => {
+      this.featuredAnime1 = response.data;
+      console.log(this.featuredAnime1);
+    });
+
+    this.jikanService.getAnimeFullById(38000).subscribe((response2) => {
+      this.featuredAnime2 = response2.data;
+
+      if (this.featuredAnime2.trailer?.embed_url) {
+        this.videoUrl2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.featuredAnime2.trailer.embed_url);
+      }
+    });
   }
 
   scrollList(direction: number, listType: string): void {
@@ -143,9 +172,12 @@ export class HomeComponent {
 
   getSimpleRating(rating: string): string {
     const ratingSimple: { [key: string]: string } = {
+      "G - All Ages": 'G',
+      "PG - Children": 'PG',
+      "PG-13 - Teens 13 or older": 'PG-13',
       "R - 17+ (violence & profanity)": 'R-17+',
       "R+ - Mild Nudity": 'R+',
-      "PG-13 - Teens 13 or older": 'PG-13',
+      "Rx - Hentai": 'Rx',
     };
   
     return ratingSimple[rating] || rating;

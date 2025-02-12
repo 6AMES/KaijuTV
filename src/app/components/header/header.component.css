@@ -1,18 +1,119 @@
 header {
     position: fixed;
     display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 60px;
+    padding: 0 5rem;
     top: 0;
     z-index: 11000;
-    background-color: #ffcc00;
+    background-color: #ff006e;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+#logo-sect-cont {
+    display: flex;
+}
+
+#logo {
+    margin-right: 5rem;
 }
 
 #logo > a {
     display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    gap: 0.8rem;
 }
 
 img {
     width: 3rem;
     height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
 }
+
+h1 {
+    margin: 0;
+}
+  
+#sections {
+    display: flex;
+    align-items: center;
+}
+  
+.custom-dropdown {
+    position: relative;
+    padding: 0 1rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    height: 100%;
+    min-width: 100px;
+}
+  
+.dropdown-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    height: 100%;
+}
+  
+.custom-dropdown:hover {
+    background-color: #ff4d9a;
+}
+  
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ff006e;
+    overflow-y: auto;
+    z-index: 100000;
+    width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+.dropdown-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 30px;
+    cursor: pointer;
+    color: white;
+}
+  
+.dropdown-option:hover {
+    background-color: #ff4d9a;
+    color: white;
+}
+
+#icons {
+    display: flex;
+    align-items: center;
+}
+  
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 100%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+  
+.icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.icon:hover {
+    background-color: #ff4d9a;
+}
+

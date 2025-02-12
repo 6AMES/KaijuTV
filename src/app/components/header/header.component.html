@@ -1,14 +1,81 @@
 <header>
-    <div id="logo">
-        <a [routerLink]="['']" routerLinkActive="router-link-active" >
-            <img src="../../../assets/images/logo.png" alt="">
-            <h1>KaijuTV</h1>
-        </a>
-    </div>
-    <div id="sections">
-
+    <div id="logo-sect-cont">
+        <div id="logo">
+            <a [routerLink]="['']" routerLinkActive="router-link-active">
+                <img src="../../../assets/images/logo.png" alt="" />
+                <h1>KaijuTV</h1>
+            </a>
+        </div>
+        <div id="sections">
+            <div class="custom-dropdown" (click)="toggleDropdown('type')">
+                <div class="dropdown-selected">
+                    Tipo
+                </div>
+                <div class="dropdown-options" *ngIf="isTypeDropdownOpen">
+                    <div class="dropdown-option" *ngFor="let type of types" (click)="selectFilter('type', type.value)">
+                        {{ type.label }}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="custom-dropdown" (click)="toggleDropdown('status')">
+                <div class="dropdown-selected">
+                    Estado
+                </div>
+                <div class="dropdown-options" *ngIf="isStatusDropdownOpen">
+                    <div class="dropdown-option" *ngFor="let status of statuses"
+                        (click)="selectFilter('status', status.value)">
+                        {{ status.label }}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="custom-dropdown" (click)="toggleDropdown('rating')">
+                <div class="dropdown-selected">
+                    Clasificación
+                </div>
+                <div class="dropdown-options" *ngIf="isRatingDropdownOpen">
+                    <div class="dropdown-option" *ngFor="let rating of ratings"
+                        (click)="selectFilter('rating', rating.value)">
+                        {{ rating.label }}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="custom-dropdown" (click)="toggleDropdown('genres')">
+                <div class="dropdown-selected">
+                    Géneros
+                </div>
+                <div class="dropdown-options" *ngIf="isGenresDropdownOpen">
+                    <div class="dropdown-option" *ngFor="let genre of genres" (click)="selectFilter('genres', genre.value)">
+                        {{ genre.label }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="icons">
+        <a class="icon" href="#" title="Buscar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </a>
 
+        <a class="icon" href="#" title="Guardados">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </a>
+
+        <a class="icon" href="#" title="Cuenta">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </a>
     </div>
 </header>

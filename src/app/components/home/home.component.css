@@ -14,6 +14,10 @@ section {
     gap: 3px;
 }
 
+.title-cont > p {
+    color: #ff006e;
+}
+
 #seasonalAnime .title-cont {
     padding: 0;
 }
@@ -81,7 +85,7 @@ p {
 
 .dropdown-selected:hover {
     text-decoration: underline;
-    color: #ffcc00;
+    color: #ff006e;
 }
   
 .dropdown-selected {
@@ -114,7 +118,7 @@ p {
 }
   
 .dropdown-option:hover {
-    background: #ffcc00;
+    background: #ff006e;
 }
 
 .dropdown-list {
@@ -132,7 +136,7 @@ p {
 }
 
 .dropdown-list::-webkit-scrollbar-thumb {
-    background: #ffcc00;
+    background: #ff006e;
     height: 3.2rem;
 }
 
@@ -143,7 +147,7 @@ p {
 }
 
 .dropdown-item:hover {
-    background-color: #ffcc00;
+    background-color: #ff006e;
 }
 
 .anime-scroll-container {
@@ -191,7 +195,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    stroke: #ffcc00;
+    stroke: #ff006e;
     z-index: 3;
 }
 
@@ -278,16 +282,16 @@ button {
         padding: 10px 20px;
         font-size: 16px;
         font-weight: bold;
-        color: #fff;
-        background-color: #ffcc00;
-        border: none;
-        border-radius: .5rem;
+        color: #ff006e;
+        background-color: transparent;
+        border: .125rem solid #ff006e;
         cursor: pointer;
         transition: all 0.3s ease;
     }
     
     .show-more-btn:hover {
-        text-decoration: underline;
+        color: #ff4d9a;
+        border: .125rem solid #ff4d9a;
     }
     
     .anime-card {
@@ -375,6 +379,14 @@ button {
     }
 }
 
+#anime-sect1 {
+    transform: translateY(-80px);
+}
+
+#anime-sect1 .title-cont {
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
+}
+
 .anime-sections {
     .anime-card {
     position: relative;
@@ -445,29 +457,167 @@ button {
     .icon-button {
         background: none;
         border: none;
-        color: #ffcc00;
+        color: #ff006e;
         cursor: pointer;
         transition: color 0.3s;
     }
     
     .icon-button:hover {
-        color: #ffcc00;
+        color: #ff4d9a;
     }
 }
 
 .banner {
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.banner.one {
+    margin: 0;
 }
 
 .banner a {
-    width: 1350px;
-    height: 450px;
-    margin: 0 5rem;
+    display: flex;
+    justify-content: center;
+    margin: 0 15rem;
 }
 
 .banner img {
     width: 100%;
-    height: 450px;
+    height: 100%;
     box-sizing: border-box;
+}
+
+#main-end {
+    width: 100%;
+    margin: 5rem 0;
+    margin-bottom: 2rem;
+}
+
+.end-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main-end img {
+    width: 249px;
+    margin-bottom: 1.5rem;
+}
+
+#main-end p {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#main-end .show-all-btn {
+    display: block;
+    margin: 1rem auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff006e;
+    background-color: transparent;
+    border: .125rem solid #ff006e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+    
+#main-end .show-all-btn:hover {
+    color: #ff4d9a;
+    border: .125rem solid #ff4d9a;
+}
+
+#featured-anime {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+  
+.slider {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+}
+  
+.slider .background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.slider > iframe {
+    width: 700px;
+}
+
+.slider .content {
+    margin: 0 3rem;
+    width: 600px;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+  
+.slider h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+  
+.slider p {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 10px 0;
+}
+  
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+  
+.btn {
+    display: block;
+    margin: 1rem;
+    margin-left: 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    background-color: #ff006e;
+    border: .125rem solid #ff006e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    color: #000000;
+    background-color: #ff4d9a;
+    border: .125rem solid #ff4d9a;
+}
+
+.btn.secondary {
+    display: block;
+    margin: 1rem;
+    margin-left: 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff006e;
+    background-color: transparent;
+    border: .125rem solid #ff006e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn.secondary:hover {
+    color: #ff4d9a;
+    border: .125rem solid #ff4d9a;
 }

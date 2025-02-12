@@ -120,6 +120,47 @@ export class JikanService {
       .pipe(catchError(this.handleError));
   }
 
+  // Obtener animes por búsqueda
+  getAnimeSearch(
+    query: string,
+    page: number = 1,
+    type?: string,
+    status?: string,
+    rating?: string,
+    genres?: string,
+    orderBy?: string,
+    sort?: string
+  ): Observable<{ data: JikanAnime[] }> {
+    const url = `${this.apiUrl}/anime`;
+    const params = new URLSearchParams();
+
+    // Añadir parámetros obligatorios
+    params.set('q', query);
+    params.set('page', page.toString());
+
+    // Añadir parámetros opcionales si están presentes
+    if (type) params.set('type', type);
+    if (status) params.set('status', status);
+    if (rating) params.set('rating', rating);
+    if (genres) params.set('genres', genres);
+    if (orderBy) params.set('order_by', orderBy);
+    if (sort) params.set('sort', sort);
+
+    return this.http.get<{ data: JikanAnime[] }>(`${url}?${params.toString()}`).pipe(
+      retryWhen((errors) =>
+        errors.pipe(
+          mergeMap((error) => {
+            if (error.status === 429) {
+              return timer(500); // Esperar 500ms en caso de límite de tasa excedido
+            }
+            return throwError(() => error);
+          })
+        )
+      ),
+      catchError(this.handleError)
+    );
+  }
+
   // Manejo de errores
   private handleError(error: HttpErrorResponse) {
     console.error('Ocurrió un error:', error.message);
