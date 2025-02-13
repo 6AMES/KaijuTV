@@ -1,0 +1,63 @@
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 3rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+a {
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 16px;
+    height: 200px;
+    width: 330px;
+}
+
+.episode-card_cover {
+    height: 200px;
+    width: 140px;
+    overflow: hidden;
+    position: relative;
+    border-radius: .5rem;
+}
+
+.episode-card_cover img {
+    height: 200px;
+    width: 140px;
+}
+
+.episode-card_body {
+    display: flex;
+    width: 180px;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.episode-card_body p {
+    margin: .5rem 0;
+    max-width: 180px;
+    font-size: 16px;
+}
+
+.episode-card_body span, 
+.episode-card_body small {
+    font-size: 12px;
+}
+
+.episode-score_value {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.episode-filler {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}

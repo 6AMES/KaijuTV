@@ -1,12 +1,22 @@
 export interface JikanEpisode {
     mal_id: number;
-    title: string;
-    episode: string;
     url: string;
+    title: string;
     aired: string;
+    score: number;
+    filler: boolean;
+    recap: boolean;
+    images?: {
+        jpg?: {
+            image_url: string;
+        };
+        webp?: {
+            image_url: string;
+        };
+    };
 }
-  
-  export interface JikanEpisodeResponse {
+
+export interface JikanEpisodeResponse {
     data: JikanEpisode[];
     pagination: {
         last_visible_page: number;
