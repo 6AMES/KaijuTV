@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, mergeMap, of, retryWhen, take, throwError, timer } from 'rxjs';
+import { Observable, catchError, mergeMap, retryWhen, throwError, timer } from 'rxjs';
 import { JikanAnime } from '../models/jikan/anime.model';
 import { JikanEpisode, JikanEpisodeResponse } from '../models/jikan/episode.model';
 import { JikanEpisodeDetail } from '../models/jikan/episode-detail.model';

@@ -1,11 +1,40 @@
-<div *ngIf="anime">
-    <h1>{{ anime.title }}</h1>
-    <p>{{ anime.synopsis }}</p>
-    <p>Rating: {{ anime.score }}</p>
-    <img [src]="anime.images.jpg.large_image_url" alt="{{ anime.title }}" />
+<div *ngIf="anime" class="anime-detail-container">
+    <!-- Sección de fondo con la portada del anime -->
+    <div class="anime-background">
+        <!-- Capa para la imagen de fondo -->
+        <div class="background-image" [ngStyle]="{
+            'background-image': 'url(' + anime.images.jpg.large_image_url + ')'
+            }"></div>
+    
+        <!-- Capa para el gradiente -->
+        <div class="background-gradient"></div>
+
+        <div class="anime-content">
+            <!-- Contenido de la izquierda: Nombre, descripción e info -->
+            <div class="anime-info">
+            <h1>{{ anime.title }}</h1>
+            <p>{{ anime.synopsis.length > 40 ? (anime.synopsis | slice:0:500) + '...' : anime.synopsis }}</p>
+            <p>Rating: {{ anime.score }}</p>
+            </div>
+
+            <!-- Contenido de la derecha: Tráiler -->
+            <div class="anime-trailer">
+            <!-- Mostrar el tráiler si hay una URL -->
+            <div *ngIf="videoUrl" class="video-container">
+                <iframe class="background-video" [src]="videoUrl" frameborder="0" allow="encrypted-media" allowfullscreen>
+                </iframe>
+            </div>
+    
+            <!-- Mostrar un mensaje si no hay tráiler -->
+            <div *ngIf="!videoUrl" class="no-trailer">
+                <h2>Trailer no disponible</h2>
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
   
-<div *ngIf="episodesResponse">
-    <h2>Episodios</h2>
+  <!-- Sección de episodios -->
+<div *ngIf="episodesResponse" class="episodes-container">
     <app-episode-list *ngIf="anime" [anime]="anime" [episodes]="episodes"></app-episode-list>
 </div>

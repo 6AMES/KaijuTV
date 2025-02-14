@@ -1,5 +1,5 @@
 <main>
-    <section id="seasonalAnime">
+    <section id="search">
         <div class="title-filter-cont">
             <div class="title-cont">
                 <h1>{{ pageTitle }}</h1>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="anime-genres">
-                        <div *ngFor="let genre of anime.genres | slice:0:3" class="genre-chip">
+                        <div *ngFor="let genre of anime.genres" class="genre-chip">
                             <span>{{ genre.name }}</span>
                         </div>
                     </div>
