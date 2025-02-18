@@ -45,3 +45,25 @@ h1 {
     font-size: 3rem;
     margin-top: 0;
 }
+
+.times p {
+    margin: 0;
+} 
+
+@media (max-width: 1200px) {
+    main {
+      flex-direction: column;
+      height: auto;
+      padding: 1rem 2rem;
+    }
+    
+    .episode-info,
+    .episode-video {
+      width: 100%;
+      height: auto;
+    }
+    
+    .episode-info {
+      margin-bottom: 1rem;
+    }
+}
