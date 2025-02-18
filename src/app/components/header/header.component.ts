@@ -14,8 +14,8 @@ export class HeaderComponent implements OnInit {
   isStatusDropdownOpen = false;
   isRatingDropdownOpen = false;
   isGenresDropdownOpen = false;
+  isSectionsDropdownOpen = false; // Nuevo estado para el menú de secciones
 
-  // Nuevas propiedades para mobile
   isMobile = false;
   isMobileMenuOpen = false;
 
@@ -63,36 +63,29 @@ export class HeaderComponent implements OnInit {
   private checkScreenWidth(): void {
     this.isMobile = window.innerWidth < 1200;
     if (!this.isMobile) {
-      // Cerramos el menú móvil si cambiamos a desktop
       this.isMobileMenuOpen = false;
     }
   }
 
   toggleDropdown(dropdown: string): void {
-    let isOpen = false;
-
-    switch (dropdown) {
-      case 'type':
-        isOpen = this.isTypeDropdownOpen;
-        break;
-      case 'status':
-        isOpen = this.isStatusDropdownOpen;
-        break;
-      case 'rating':
-        isOpen = this.isRatingDropdownOpen;
-        break;
-      case 'genres':
-        isOpen = this.isGenresDropdownOpen;
-        break;
-    }
-
-    if (isOpen) {
+    console.log(`Toggling dropdown: ${dropdown}`);
+  
+    // Si el dropdown ya estaba abierto, solo lo cerramos
+    if (
+      (dropdown === 'type' && this.isTypeDropdownOpen) ||
+      (dropdown === 'status' && this.isStatusDropdownOpen) ||
+      (dropdown === 'rating' && this.isRatingDropdownOpen) ||
+      (dropdown === 'genres' && this.isGenresDropdownOpen) ||
+      (dropdown === 'sections' && this.isSectionsDropdownOpen)
+    ) {
       this.closeAllDropdowns();
+      console.log("Cerrando todos los dropdowns");
       return;
     }
-
+  
+    // Cierra los otros dropdowns antes de abrir el nuevo
     this.closeAllDropdowns();
-
+  
     switch (dropdown) {
       case 'type':
         this.isTypeDropdownOpen = true;
@@ -106,36 +99,61 @@ export class HeaderComponent implements OnInit {
       case 'genres':
         this.isGenresDropdownOpen = true;
         break;
+      case 'sections':
+        this.isSectionsDropdownOpen = true;
+        break;
     }
+  
+    console.log(`Estado actualizado: 
+      Type: ${this.isTypeDropdownOpen}, 
+      Status: ${this.isStatusDropdownOpen}, 
+      Rating: ${this.isRatingDropdownOpen}, 
+      Genres: ${this.isGenresDropdownOpen}, 
+      Sections: ${this.isSectionsDropdownOpen}`);
   }
+  
 
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    console.log(`Menú móvil abierto: ${this.isMobileMenuOpen}`);
   }
 
   selectFilter(filter: string, value: string): void {
-    this.closeAllDropdowns(); // Cierra todos los desplegables
-    this.isMobileMenuOpen = false; // Cierra el menú móvil si está abierto
+    this.isMobileMenuOpen = false;
     this.router.navigate(['/search'], { queryParams: { [filter]: value } });
   }
 
-  private closeAllDropdowns(): void {
+  closeAllDropdowns(): void {
+    console.log("Cerrando todos los dropdowns");
     this.isTypeDropdownOpen = false;
     this.isStatusDropdownOpen = false;
     this.isRatingDropdownOpen = false;
     this.isGenresDropdownOpen = false;
+    this.isSectionsDropdownOpen = false;
   }
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent): void {
     const target = event.target as HTMLElement;
+
+    console.log("Click detectado en:", target);
+
+    // Evitar que se cierre el menú al hacer clic en el botón de hamburguesa
+    if (target.closest('.mobile-menu-icon')) {
+      console.log("Clic en el icono del menú móvil, no cerrar.");
+      return;
+    }
+
     if (
       !target.closest('.custom-dropdown') &&
       !target.closest('.dropdown-selected') &&
-      !target.closest('.mobile-menu')
+      !target.closest('.mobile-menu-options') &&  // <-- Evita cerrar si se hace clic dentro del menú
+      !target.closest('.sections-dropdown')
     ) {
+      console.log("Clic fuera de menú, cerrando.");
       this.closeAllDropdowns();
       this.isMobileMenuOpen = false;
     }
   }
+
 }

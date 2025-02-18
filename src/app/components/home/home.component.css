@@ -540,24 +540,21 @@ button {
     justify-content: center;
     overflow: hidden;
 }
-  
+
 .slider {
     position: relative;
     width: 90%;
     max-width: 1200px;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
-  
-.slider .background {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-}
 
-.slider > iframe {
+.slider > iframe,
+.slider > .background-video {
     width: 700px;
+    height: 400px;
+    border: none;
 }
 
 .slider .content {
@@ -566,16 +563,21 @@ button {
     color: white;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 }
-  
+
 .slider h2 {
     font-size: 2.5rem;
     font-weight: bold;
+    margin: 0 0 10px;
 }
-  
+
 .slider p {
     font-size: 1rem;
     max-width: 600px;
     margin: 10px 0;
+}
+
+.slider .buttons {
+    margin-top: 1rem;
 }
   
 .buttons {
@@ -620,4 +622,100 @@ button {
 .btn.secondary:hover {
     color: #ff4d9a;
     border: .125rem solid #ff4d9a;
+}
+
+@media (max-width: 1200px) {
+    .banner > a {
+        margin: 0;
+    }
+
+    li > .anime-card, li > a > div > img {
+        width: 200px !important;
+        height: 300px !important;
+    }
+
+    .anime-description {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    #featured-anime {
+        height: 300px;
+    }
+    .slider > iframe,
+    .slider > .background-video {
+        width: 100%;
+        height: 300px;
+    }
+    .slider .content {
+        width: 45%;
+        margin: 0 1rem;
+    }
+    .slider h2 {
+        font-size: 2rem;
+    }
+    .slider p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 788px) {
+    .cards {
+        justify-content: center !important;
+    }
+
+    li > .anime-card, li > a > div > img {
+        width: 150px !important;
+        height: 275px !important;
+    }
+
+    #featured-anime {
+        height: 250px;
+    }
+    .slider {
+        flex-direction: column;
+    }
+    .slider > iframe,
+    .slider > .background-video {
+        width: 100%;
+        height: 250px;
+    }
+    .slider .content {
+        width: 90%;
+        margin: 1rem auto;
+        text-align: center;
+    }
+    .slider h2 {
+        font-size: 1.8rem;
+    }
+    .slider p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #featured-anime {
+        height: 200px;
+    }
+    .slider > iframe,
+    .slider > .background-video {
+        width: 100%;
+        height: 200px;
+    }
+    .slider .content {
+        width: 100%;
+        margin: 0.5rem;
+        padding: 0 0.5rem;
+    }
+    .slider h2 {
+        font-size: 1.5rem;
+    }
+    .slider p {
+        font-size: 0.7rem;
+    }
+    .btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
 }

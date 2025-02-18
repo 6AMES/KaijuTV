@@ -46,3 +46,17 @@ footer {
     margin-top: 1rem;
     font-size: 0.9rem;
 }
+
+@media (max-width: 768px) {
+    footer {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    footer {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
