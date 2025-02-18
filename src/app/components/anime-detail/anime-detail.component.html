@@ -3,16 +3,16 @@
         <div class="background-image" [ngStyle]="{
             'background-image': 'url(' + anime.images.jpg.large_image_url + ')'
             }"></div>
-    
+
         <div class="background-gradient"></div>
 
         <div class="anime-content">
             <div class="anime-info">
                 <h1>{{ anime.title }}</h1>
                 <h3 *ngIf="anime.title_japanese">({{ anime.title_japanese }})</h3>
-            
-                <p>{{ anime.synopsis.length > 40 ? (anime.synopsis | slice:0:500) + '...' : anime.synopsis || 'No hay sinopsis disponible.' }}</p>
-            
+                
+                <p>{{ anime.synopsis.length > 40 ? (anime.synopsis | slice:0:300) + '...' : anime.synopsis || 'No hay sinopsis disponible.' }}</p>
+                
                 <div class="anime-details">
                     <p><strong>Ranking:</strong> #{{ anime.rank || 'N/A' }}</p>
                     <p><strong>Score:</strong> {{ anime.score || 'N/A' }} ({{ anime.scored_by | number }})</p>
@@ -21,7 +21,7 @@
                     <p><strong>Rating:</strong> {{ anime.rating ? getSimpleRating(anime.rating) : 'No disponible' }}</p>
                     <p><strong>Temporada:</strong> {{ anime.season ? (anime.season | titlecase) : 'Desconocida' }} - {{ anime.year || 'N/A' }}</p>
                 </div>
-            
+
                 <div class="anime-genres">
                     <p><strong>Géneros:</strong> {{ anime ? getGenres(anime) : 'No disponible' }}</p>
                 </div>
@@ -32,14 +32,14 @@
             </div>            
 
             <div class="anime-trailer">
-            <div *ngIf="videoUrl" class="video-container">
-                <iframe class="background-video" [src]="videoUrl" frameborder="0" allow="encrypted-media" allowfullscreen>
-                </iframe>
-            </div>
-    
-            <div *ngIf="!videoUrl" class="no-trailer">
-                <h2>Trailer no disponible</h2>
-            </div>
+                <div *ngIf="videoUrl" class="video-container">
+                    <iframe class="background-video" [src]="videoUrl" frameborder="0" allow="encrypted-media" allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div *ngIf="!videoUrl" class="no-trailer">
+                    <h2>Trailer no disponible</h2>
+                </div>
             </div>
         </div>
     </div>

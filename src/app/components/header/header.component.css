@@ -164,6 +164,32 @@ h1 {
     color: white;
 }
 
+.mobile-menu-icons {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: .5rem;
+    padding-top: .5rem;
+}
+
+.mobile-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 1rem;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.mobile-menu-item:hover {
+    background-color: #ff4d9a;
+}
+
+.mobile-menu-item span {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+}
+
 @media (max-width: 1200px){
     .dropdown-options {
         position: absolute;
@@ -181,13 +207,18 @@ h1 {
         position: absolute;
         box-shadow: none;
         background-color: #ff006e;
-        left: -123%;
+        left: -105%;
+    }
+
+    .dropdown-selected {
+        justify-content: flex-start;
     }
 }
 
-@media (max-width: 768px) {
-    .icon svg {
-        width: 24px;
-        height: 24px;
+@media (min-width: 1200px) {
+    #icons > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 }

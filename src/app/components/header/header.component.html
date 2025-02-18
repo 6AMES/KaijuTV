@@ -51,32 +51,34 @@
     </div>
 
     <div id="icons">
-        <a class="icon" href="#" title="Buscar">
-            <!-- SVG del ícono Buscar -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-        </a>
+        <!-- Íconos solo en Desktop -->
+        <div *ngIf="!isMobile">
+            <a class="icon" href="#" title="Buscar">
+                <!-- SVG del ícono Buscar -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </a>
 
-        <a class="icon" href="#" title="Guardados">
-            <!-- SVG del ícono Guardados -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-            </svg>
-        </a>
+            <a class="icon" href="#" title="Guardados">
+                <!-- SVG del ícono Guardados -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </a>
 
-        <a class="icon" href="#" title="Cuenta">
-            <!-- SVG del ícono Cuenta -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-        </a>
-
+            <a class="icon" href="#" title="Cuenta">
+                <!-- SVG del ícono Cuenta -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </a>
+        </div>
         <!-- Ícono de menú móvil (visible solo en mobile) -->
         <a class="icon mobile-menu-icon" *ngIf="isMobile" (click)="toggleMobileMenu()" title="Menú">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24">
@@ -87,6 +89,7 @@
 
     <!-- Contenedor de opciones del menú móvil (visible solo en mobile) -->
     <div class="mobile-menu-options" *ngIf="isMobile && isMobileMenuOpen">
+        <!-- Dropdowns Mobile (igual que antes) -->
         <div class="mobile-dropdown" (click)="toggleDropdown('type'); $event.stopPropagation()">
             <div class="dropdown-selected">Tipo</div>
             <div class="dropdown-options" *ngIf="isTypeDropdownOpen">
@@ -125,6 +128,36 @@
                     {{ genre.label }}
                 </div>
             </div>
+        </div>
+
+        <!-- Sección para los íconos (Buscar, Guardados, Cuenta) -->
+        <div class="mobile-menu-icons">
+            <a class="mobile-menu-item" [routerLink]="['/search']" (click)="toggleMobileMenu()" title="Buscar">
+                <!-- SVG del ícono Buscar -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span>Buscar</span>
+            </a>
+            <a class="mobile-menu-item" [routerLink]="['/favorites']" (click)="toggleMobileMenu()" title="Guardados">
+                <!-- SVG del ícono Guardados -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Guardados</span>
+            </a>
+            <a class="mobile-menu-item" [routerLink]="['/account']" (click)="toggleMobileMenu()" title="Cuenta">
+                <!-- SVG del ícono Cuenta -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Cuenta</span>
+            </a>
         </div>
     </div>
 </header>
