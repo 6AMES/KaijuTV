@@ -1,14 +1,16 @@
-<div *ngIf="episode">
-    <h1>{{ episode.title }}</h1>
-    <p>{{ episode.synopsis }}</p>
-    <p>Duración: {{ episode.duration }} segundos</p>
-    <p>Fecha de emisión: {{ episode.aired }}</p>
-    <p *ngIf="episode.filler">Este episodio es de relleno.</p>
-    <p *ngIf="episode.recap">Este episodio es un resumen.</p>
-</div>
+<main>
+    <div *ngIf="episode" class="episode-info">
+        <h1>{{ episode.title }}</h1>
+        <p>{{ episode.synopsis ? (episode.synopsis | removeSource | slice:0:800) + '...' : 'No hay sinopsis disponible.' }}</p>
+        <p *ngIf="episode.filler">Este episodio es de relleno.</p>
+        <p *ngIf="episode.recap">Este episodio es un resumen.</p>
+        <div class="times">
+            <p>{{ episode.duration * 1000 | date:'mm:ss' }}</p>
+            <p>{{ episode.aired | date: 'dd/MM/yyyy'}}</p>
+        </div>
+    </div>
 
-<div>
-    <h2>Reproducir episodio</h2>
-    <!-- Mostrar el reproductor de video -->
-    <app-video-player [servers]="animeFLVEpisode?.data?.servers ?? []" [selectedVideoUrl]="videoUrl"></app-video-player>
-</div>
+    <div class="episode-video">
+        <app-video-player class="video-component" [servers]="animeFLVEpisode?.data?.servers ?? []" [selectedVideoUrl]="videoUrl"></app-video-player>
+    </div>
+</main>

@@ -75,8 +75,8 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
-    margin: 1rem auto;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -90,4 +90,9 @@ a {
 .show-more-btn:hover {
     color: #ff4d9a;
     border: .125rem solid #ff4d9a;
+}
+
+.show-more-btn > div {
+    display: flex;
+    flex-direction: column;
 }

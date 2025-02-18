@@ -7,10 +7,11 @@ import { AnimeFLVEpisodeResponse } from '../../models/animeflv/episode.model';
 import { AnimeFLVService } from '../../services/animeflv.service';
 import { VideoPlayerComponent } from "../video-player/video-player.component";
 import { JikanAnime } from '../../models/jikan/anime.model';
+import { RemoveSourcePipe } from '../../pipes/remove-source.pipe';
 
 @Component({
   selector: 'app-episode-detail',
-  imports: [CommonModule, VideoPlayerComponent],
+  imports: [CommonModule, VideoPlayerComponent, RemoveSourcePipe],
   templateUrl: './episode-detail.component.html',
   styleUrl: './episode-detail.component.css'
 })

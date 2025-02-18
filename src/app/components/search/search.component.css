@@ -14,6 +14,7 @@ main {
 }
 
 h1 {
+    color: #ff006e;
     font-size: 3rem;
 }
 
@@ -25,10 +26,12 @@ h1 {
     width: 100%;
     max-width: 100rem;
     padding: 1rem 3rem;
+    padding-top: 3rem;
     box-sizing: border-box;
     overflow: hidden;
     transition: height 0.3s ease-in-out;
     margin: auto;
+    border-top: 1px solid #ff006e;
 }
 
 .cards.expanded {

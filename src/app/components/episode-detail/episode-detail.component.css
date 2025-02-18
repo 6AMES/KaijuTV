@@ -1,0 +1,47 @@
+main {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: 40em;
+    padding: 1rem 12rem;
+    box-sizing: border-box;
+}
+
+.episode-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 35%;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.episode-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.video-component {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.times {
+    display: flex;
+    justify-content: space-between;
+    color: #ff006e;
+}
+
+h1 {
+    color: #ff006e;
+    font-size: 3rem;
+    margin-top: 0;
+}

@@ -57,5 +57,25 @@ export class AnimeDetailComponent implements OnInit {
     } else {
       console.error('No se encontró el ID del anime');
     }
-  }  
+  } 
+
+  getGenres(anime: JikanAnime): string {
+    if (!anime || !anime.genres || anime.genres.length === 0) {
+      return 'No disponible';
+    }
+    return anime.genres.map(genre => genre.name).join(', ');
+  }
+
+  getSimpleRating(rating: string): string {
+    const ratingSimple: { [key: string]: string } = {
+      "G - All Ages": 'G',
+      "PG - Children": 'PG',
+      "PG-13 - Teens 13 or older": 'PG-13',
+      "R - 17+ (violence & profanity)": 'R-17+',
+      "R+ - Mild Nudity": 'R+',
+      "Rx - Hentai": 'Rx',
+    };
+  
+    return ratingSimple[rating] || rating;
+  }
 }
