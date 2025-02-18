@@ -1,18 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isTypeDropdownOpen = false;
   isStatusDropdownOpen = false;
   isRatingDropdownOpen = false;
   isGenresDropdownOpen = false;
+
+  // Nuevas propiedades para mobile
+  isMobile = false;
+  isMobileMenuOpen = false;
 
   types = [
     { value: 'tv', label: 'TV' },
@@ -33,7 +38,6 @@ export class HeaderComponent {
     { value: 'pg13', label: 'PG-13' },
     { value: 'r17', label: 'R-17+' },
     { value: 'r', label: 'R' },
-    { value: 'rx', label: 'RX' },
   ];
 
   genres = [
@@ -46,6 +50,23 @@ export class HeaderComponent {
   ];
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.checkScreenWidth();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenWidth();
+  }
+
+  private checkScreenWidth(): void {
+    this.isMobile = window.innerWidth < 1200;
+    if (!this.isMobile) {
+      // Cerramos el menú móvil si cambiamos a desktop
+      this.isMobileMenuOpen = false;
+    }
+  }
 
   toggleDropdown(dropdown: string): void {
     let isOpen = false;
@@ -88,8 +109,13 @@ export class HeaderComponent {
     }
   }
 
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
   selectFilter(filter: string, value: string): void {
     this.closeAllDropdowns(); // Cierra todos los desplegables
+    this.isMobileMenuOpen = false; // Cierra el menú móvil si está abierto
     this.router.navigate(['/search'], { queryParams: { [filter]: value } });
   }
 
@@ -103,12 +129,13 @@ export class HeaderComponent {
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent): void {
     const target = event.target as HTMLElement;
-
     if (
       !target.closest('.custom-dropdown') &&
-      !target.closest('.dropdown-selected')
+      !target.closest('.dropdown-selected') &&
+      !target.closest('.mobile-menu')
     ) {
       this.closeAllDropdowns();
+      this.isMobileMenuOpen = false;
     }
   }
 }
