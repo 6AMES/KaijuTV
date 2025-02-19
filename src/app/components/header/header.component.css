@@ -137,6 +137,11 @@ h1 {
     font-size: 1rem;
     color: white;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-dropdown:hover {
+    background-color: #ff4d9a;
 }
 
 .mobile-dropdown:last-child {
@@ -220,5 +225,27 @@ h1 {
         display: flex;
         flex-direction: row;
         align-items: center;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: 0rem;
+    }
+
+    #logo > a > h1 {
+        font-size: 1rem !important;
+    }
+
+    #icons {
+        height: 100%;
+    }
+
+    .mobile-menu-icon {
+        height: 60px;
+    }
+
+    .mobile-menu-options {
+        right: 0rem;
     }
 }
