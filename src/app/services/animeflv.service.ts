@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { AnimeFLVEpisodeResponse } from '../models/animeflv/episode.model';
 
 @Injectable({
@@ -8,7 +8,6 @@ import { AnimeFLVEpisodeResponse } from '../models/animeflv/episode.model';
 })
 export class AnimeFLVService {
   private apiUrl = 'https://animeflv.ahmedrangel.com/api';
-  private slugs: string[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -17,18 +16,6 @@ export class AnimeFLVService {
     return this.http
       .get<AnimeFLVEpisodeResponse>(`${this.apiUrl}/anime/${slug}/episode/${number}`)
       .pipe(catchError(this.handleError));
-  }
-
-  // Cargar la lista de slugs desde animes.txt
-  loadSlugs(): Observable<string[]> {
-    return this.http.get('assets/animes.txt', { responseType: 'text' }).pipe(
-      catchError(this.handleError),
-      map((data) => {
-        // Convertir el contenido del archivo en un array de slugs
-        this.slugs = JSON.parse(data);
-        return this.slugs;
-      })
-    );
   }
 
   // Manejo de errores
